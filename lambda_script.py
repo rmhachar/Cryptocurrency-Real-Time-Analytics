@@ -86,10 +86,35 @@ def find_arbitarage_opportunities(currency1, currency2, exchanges, api_key):
     )
     
     return output
+
+def get_btc_values_and_spreads(exchange_and_values):
     
-def create_output(output, max_value, max_exchange, min_value, min_exchange, timestamp, dollar_dif, percent_gain):
+    all_spreads = {}
+    
+    for key, value in exchange_and_values.items():
+        spreads = {}
+        temp_key = key
+        temp_value = value
+        
+        for key2, value2 in exchange_and_values.items():
+            temp_spread = {
+                key2: value-value2
+            }
+            spreads.update(temp_spread)
+        
+        temp_dict = {
+            temp_key: {
+                "value": temp_value,
+                "spreads": spreads
+            }
+        }
+        
+        all_spreads.update(temp_dict)
+        
+    return all_spreads    
+def create_output(exchange_and_values, max_value, max_exchange, min_value, min_exchange, timestamp, dollar_dif, percent_gain):
     output = {
-        'BTC': output,
+        'BTC': get_btc_values_and_spreads(exchange_and_values),
         'max_exchange': max_exchange,
         'max_value': max_value,
         'min_exchange': min_exchange,
