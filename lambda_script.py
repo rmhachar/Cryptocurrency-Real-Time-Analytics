@@ -111,7 +111,8 @@ def get_btc_values_and_spreads(exchange_and_values):
         
         all_spreads.update(temp_dict)
         
-    return all_spreads    
+    return all_spreads 
+    
 def create_output(exchange_and_values, max_value, max_exchange, min_value, min_exchange, timestamp, dollar_dif, percent_gain):
     output = {
         'BTC': get_btc_values_and_spreads(exchange_and_values),
@@ -126,12 +127,10 @@ def create_output(exchange_and_values, max_value, max_exchange, min_value, min_e
     
     return output
 
-response = find_arbitarage_opportunities(currency1, currency2, exchanges, api_key)
-
 def lambda_handler(event, context):
     # TODO implement
     return {
         'statusCode': 200,
-        'body': json.dumps(response)
+        'body': json.dumps(find_arbitarage_opportunities(currency1, currency2, exchanges, api_key))
     }
 
