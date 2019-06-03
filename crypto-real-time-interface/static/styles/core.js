@@ -32,6 +32,6 @@ function appendTopFive(topFiveSpreads, topFivePairs) {
 function appendRow(topFiveSpreads, topFivePairs, i) {
 	console.log(topFiveSpreads[i])
 	$(document.getElementById(`highest-spread-${(i+1)}`)).append(`
-		<div>${topFivePairs[i]} - ${topFiveSpreads[i].toFixed(3)}</div>
+		<div><p>${topFivePairs[i]} - ${topFiveSpreads[i].toFixed(3)}</p></div>
 	`)
 }
