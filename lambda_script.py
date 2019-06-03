@@ -13,7 +13,7 @@ exchanges = [
     "Coinbase",
     "BitTrex" 
 ]
-api_key = 'c32565db2e025bfaba2a25ccc2068d5aa44ddaefd51277bfd833e5649606defc'
+api_key = 'YOUR API KEY HERE'
 
 
 # Define Functions
@@ -98,7 +98,7 @@ def get_btc_values_and_spreads(exchange_and_values):
         
         for key2, value2 in exchange_and_values.items():
             temp_spread = {
-                key2: value-value2
+                "{}-{}".format(key, key2): value-value2
             }
             spreads.update(temp_spread)
         
